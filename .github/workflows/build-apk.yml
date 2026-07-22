@@ -21,22 +21,10 @@ jobs:
         run: |
           pip install flet
 
-      - name: Generate debug keystore
-        run: |
-          keytool -genkey -v -keystore debug.keystore -alias debug \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass android -keypass android \
-            -dname "CN=Debug, OU=Dev, O=GestionPro, L=Habana, ST=Habana, C=CU"
-
-      - name: Build APK (signed)
+      - name: Build APK
         run: |
           cd prototipo-tcp
-          flet build apk --project "GestionProTCP" \
-            --android-signing-key-store ../debug.keystore \
-            --android-signing-key-store-password android \
-            --android-signing-key-password android \
-            --android-signing-key-alias debug \
-            --yes --verbose
+          flet build apk --project "GestionProTCP" --yes --verbose
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

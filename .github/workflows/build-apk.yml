@@ -26,6 +26,29 @@ jobs:
           cd prototipo-tcp
           flet build apk --project "GestionProTCP" --yes --verbose
 
+      - name: Sign APK with debug key
+        run: |
+          # Generar keystore de debug
+          keytool -genkey -v -keystore debug.keystore -alias debug \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android \
+            -dname "CN=Debug, OU=Dev, O=GestionPro, L=Habana, ST=Habana, C=CU"
+
+          # Buscar APK generado
+          APK_DIR="prototipo-tcp/build/apk"
+          APK_FILE=$(find "$APK_DIR" -name "*.apk" -type f | head -1)
+          if [ -z "$APK_FILE" ]; then
+            echo "No se encontr� APK en $APK_DIR"
+            exit 1
+          fi
+          echo "Firmando: $APK_FILE"
+
+          # Firmar con jarsigner
+          jarsigner -sigalg SHA1withRSA -digestalg SHA1 \
+            -keystore debug.keystore -storepass android -keypass android \
+            "$APK_FILE" debug
+          echo "APK firmado exitosamente"
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:

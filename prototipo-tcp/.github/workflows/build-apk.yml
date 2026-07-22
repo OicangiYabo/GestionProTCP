@@ -1,0 +1,45 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install flet
+
+      - name: Generate debug keystore
+        run: |
+          keytool -genkey -v -keystore debug.keystore -alias debug \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android \
+            -dname "CN=Debug, OU=Dev, O=GestionPro, L=Habana, ST=Habana, C=CU"
+
+      - name: Build APK (signed)
+        run: |
+          cd prototipo-tcp
+          flet build apk --project "GestionProTCP" \
+            --android-signing-key-store ../debug.keystore \
+            --android-signing-key-store-password android \
+            --android-signing-key-password android \
+            --android-signing-key-alias debug \
+            --yes --verbose
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: GestionProTCP-APK
+          path: prototipo-tcp/build/apk/

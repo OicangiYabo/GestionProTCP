@@ -35,7 +35,7 @@ def crear_home(page: ft.Page):
                 ft.ListTile(
                     title=ft.Text(p["nombre"], size=13),
                     subtitle=ft.Text(f"Stock: {p['stock']} unidades", size=11),
-                    trailing=ft.Icon(ft.icons.WARNING_AMBER, color=ft.colors.ORANGE),
+                    trailing=ft.Icon(ft.icons.WARNING_AMBER, color=ft.Colors.ORANGE),
                 )
             )
         if not items_bajo:
@@ -46,8 +46,8 @@ def crear_home(page: ft.Page):
 
         page.update()
 
-    txt_vendido = ft.Text("$0.00", size=24, weight=ft.FontWeight.BOLD, color=ft.colors.GREEN)
-    txt_ganancia = ft.Text("$0.00", size=24, weight=ft.FontWeight.BOLD, color=ft.colors.BLUE)
+    txt_vendido = ft.Text("$0.00", size=24, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN)
+    txt_ganancia = ft.Text("$0.00", size=24, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE)
     txt_ventas = ft.Text("0", size=24, weight=ft.FontWeight.BOLD)
 
     tabla_ventas = ft.DataTable(
@@ -75,40 +75,40 @@ def crear_home(page: ft.Page):
                         ft.Container(
                             content=ft.Column(
                                 controls=[
-                                    ft.Text("Vendido", size=12, color=ft.colors.GREY),
+                                    ft.Text("Vendido", size=12, color=ft.Colors.GREY),
                                     txt_vendido,
                                 ],
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                             ),
                             col={"sm": 4},
                             padding=10,
-                            border=ft.border.all(1, ft.colors.GREY_300),
+                            border=ft.border.all(1, ft.Colors.GREY_300),
                             border_radius=10,
                         ),
                         ft.Container(
                             content=ft.Column(
                                 controls=[
-                                    ft.Text("Ganancia", size=12, color=ft.colors.GREY),
+                                    ft.Text("Ganancia", size=12, color=ft.Colors.GREY),
                                     txt_ganancia,
                                 ],
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                             ),
                             col={"sm": 4},
                             padding=10,
-                            border=ft.border.all(1, ft.colors.GREY_300),
+                            border=ft.border.all(1, ft.Colors.GREY_300),
                             border_radius=10,
                         ),
                         ft.Container(
                             content=ft.Column(
                                 controls=[
-                                    ft.Text("Ventas", size=12, color=ft.colors.GREY),
+                                    ft.Text("Ventas", size=12, color=ft.Colors.GREY),
                                     txt_ventas,
                                 ],
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                             ),
                             col={"sm": 4},
                             padding=10,
-                            border=ft.border.all(1, ft.colors.GREY_300),
+                            border=ft.border.all(1, ft.Colors.GREY_300),
                             border_radius=10,
                         ),
                     ],
@@ -126,7 +126,7 @@ def crear_home(page: ft.Page):
                 ft.Text("Stock bajo", size=16, weight=ft.FontWeight.BOLD),
                 ft.Container(
                     content=lista_bajo,
-                    border=ft.border.all(1, ft.colors.GREY_300),
+                    border=ft.border.all(1, ft.Colors.GREY_300),
                     border_radius=8,
                     padding=5,
                 ),

@@ -9,10 +9,10 @@ def main(page: ft.Page):
     page.title = "GestiónPro TCP"
     page.theme_mode = ft.ThemeMode.DARK
     page.padding = 0
-    page.bgcolor = ft.colors.GREY_900
+    page.bgcolor = ft.Colors.GREY_900
 
     page.theme = ft.Theme(
-        color_scheme_seed=ft.colors.TEAL,
+        color_scheme_seed=ft.Colors.TEAL,
         use_material3=True,
     )
 
@@ -49,8 +49,8 @@ def main(page: ft.Page):
     page.floating_action_button = ft.FloatingActionButton(
         icon=ft.icons.ADD,
         on_click=abrir_agregar,
-        bgcolor=ft.colors.TEAL,
-        foreground_color=ft.colors.WHITE,
+        bgcolor=ft.Colors.TEAL,
+        foreground_color=ft.Colors.WHITE,
     )
 
     page.navigation_bar = ft.NavigationBar(

@@ -18,7 +18,7 @@ def crear_productos(page: ft.Page, on_cambio):
                                     ft.Text(
                                         f"Precio: ${p['precio_venta']:.2f} | Costo: ${p['precio_compra']:.2f}",
                                         size=11,
-                                        color=ft.colors.GREY,
+                                        color=ft.Colors.GREY,
                                     ),
                                     ft.Text(
                                         f"Stock: {p['stock']} | Margen: {((p['precio_venta'] - p['precio_compra']) / p['precio_venta'] * 100) if p['precio_venta'] > 0 else 0:.1f}%",
@@ -35,14 +35,14 @@ def crear_productos(page: ft.Page, on_cambio):
                             ft.IconButton(
                                 icon=ft.icons.DELETE_OUTLINE,
                                 tooltip="Eliminar",
-                                icon_color=ft.colors.RED_400,
+                                icon_color=ft.Colors.RED_400,
                                 on_click=lambda _, pid=p["id"]: _eliminar(pid),
                             ),
                         ],
                         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                     ),
                     padding=12,
-                    border=ft.border.all(1, ft.colors.GREY_300),
+                    border=ft.border.all(1, ft.Colors.GREY_300),
                     border_radius=8,
                     margin=ft.margin.only(bottom=6),
                 )
@@ -95,7 +95,7 @@ def crear_productos(page: ft.Page, on_cambio):
                 if cant > prod["stock"]:
                     page.snack_bar = ft.SnackBar(
                         content=ft.Text("Stock insuficiente"),
-                        bgcolor=ft.colors.RED,
+                        bgcolor=ft.Colors.RED,
                     )
                     page.snack_bar.open = True
                     page.update()
@@ -105,7 +105,7 @@ def crear_productos(page: ft.Page, on_cambio):
                     dlg.open = False
                     page.snack_bar = ft.SnackBar(
                         content=ft.Text("Venta registrada"),
-                        bgcolor=ft.colors.GREEN,
+                        bgcolor=ft.Colors.GREEN,
                     )
                     page.snack_bar.open = True
                     cargar()
@@ -123,7 +123,7 @@ def crear_productos(page: ft.Page, on_cambio):
             ),
             actions=[
                 ft.TextButton("Cancelar", on_click=lambda e: _cerrar_dialog(dlg)),
-                ft.ElevatedButton("Confirmar Venta", on_click=confirmar, bgcolor=ft.colors.GREEN, color=ft.colors.WHITE),
+                ft.ElevatedButton("Confirmar Venta", on_click=confirmar, bgcolor=ft.Colors.GREEN, color=ft.Colors.WHITE),
             ],
         )
         page.dialog = dlg

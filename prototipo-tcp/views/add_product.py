@@ -42,7 +42,7 @@ def mostrar_agregar_producto(page: ft.Page, on_confirmado):
         dlg.open = False
         page.snack_bar = ft.SnackBar(
             content=ft.Text(f"'{nombre}' agregado"),
-            bgcolor=ft.colors.GREEN,
+            bgcolor=ft.Colors.GREEN,
         )
         page.snack_bar.open = True
         on_confirmado()
